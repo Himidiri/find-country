@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(169, 97, 179),
+    rgb(92, 145, 206)
+  );
+  color: #000000;
+  text-align: center;
+  font-family: monospace;
+}
+
+header {
+  margin: 50px;
+  font-size: 25px;
+  position: relative;
+}
+
+.font-monospace {
+  font-family: monospace;
+  text-align: center;
+  font-weight: bold;
+}
+
+header img {
+  width: 50px;
+  margin-top: 3px;
+  position: absolute;
+}
+
+.earth {
+  left: 30%;
+}
+
+.search {
+  right: 31%;
+  top: 3%;
+}
