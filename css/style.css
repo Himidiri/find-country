@@ -9,13 +9,13 @@ html {
 }
 
 body {
-  background-image: linear-gradient(
-    to right,
-    rgb(169, 97, 179),
-    rgb(92, 145, 206)
-  );
+  background-image: linear-gradient(to right, rgb(169, 97, 179), rgb(92, 145, 206));
 }
 
 .icon {
   width: 35px;
+}
+
+.card-body {
+  height: 230px;
 }
