@@ -53,6 +53,7 @@ function filterCountries() {
       title: "Empty Input",
       text: "Please enter a country name before searching."
     });
+    countryDetails.innerHTML = "";
     return;
   }
 
