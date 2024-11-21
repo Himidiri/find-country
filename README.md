@@ -11,7 +11,11 @@ A simple and interactive web application to search and display country details d
 
 ## Screenshots
 
-![find-country](https://github.com/user-attachments/assets/376d900c-171f-449d-86c2-9c8e969d9325)
+![find-country](https://github.com/user-attachments/assets/4619fb21-1b0d-490e-ac8f-8a9b498d52cd)
+
+![alert-1](https://github.com/user-attachments/assets/31726513-7708-4cce-b4bf-3e985331c8f2)
+
+![alert-2](https://github.com/user-attachments/assets/99933637-722a-4a2e-be04-7487b1c7ca65)
 
 ## How to Run
 Clone the repository:
