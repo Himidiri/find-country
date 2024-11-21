@@ -1,26 +1,31 @@
 const userInput = document.getElementById("inputs");
 const countryDetails = document.getElementById("countryDetails");
-let allCountries = [];
 
-// Fetch all countries 
-window.onload = function () {
-  userInput.value = ""; 
-  fetch("https://restcountries.com/v3.1/all")
-    .then(response => response.json())
-    .then(data => {
-      allCountries = data;
-      displayCountries(data);
-    })
-    .catch(err => console.error("Error fetching countries:", err));
-};
+let allCountries = []; // Holds all fetched countries for filtering
 
-// Display all countries
+// Fetch and store all countries
+fetch("https://restcountries.com/v3.1/all")
+  .then((response) => response.json())
+  .then((data) => {
+    allCountries = data;
+  })
+  .catch((err) => {
+    console.error("Error fetching countries:", err);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong while fetching countries!",
+      footer: '<a href="https://restcountries.com/">Check API status</a>'
+    });
+  });
+
+// Display countries 
 function displayCountries(data) {
   countryDetails.innerHTML = "";
-  data.forEach(country => {
+  data.forEach((country) => {
     const countryCard = `
-      <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card h-100">
+      <div data-aos="flip-left" class="col">
+          <div data-aos="flip-left" class="card h-100">
             <img src="${country.flags.png}" class="card-img-top" alt="Flag of ${country.name.common}">
             <div class="card-body">
               <h5 class="card-title">${country.name.common}</h5>
@@ -32,23 +37,40 @@ function displayCountries(data) {
               <a href="https://www.google.com/maps?q=${country.name.common}" target="_blank" class="btn btn-primary">View on Google Maps</a>
             </div>
           </div>
-        </div>
+      </div>
     `;
     countryDetails.innerHTML += countryCard;
   });
 }
 
-// Filter countries 
+// Filter countries
 function filterCountries() {
-  const query = userInput.value.toLowerCase();
-  const filteredCountries = allCountries.filter(country =>
+  const query = userInput.value.trim().toLowerCase();
+
+  if (!query) {
+    Swal.fire({
+      icon: "warning",
+      title: "Empty Input",
+      text: "Please enter a country name before searching."
+    });
+    return;
+  }
+
+  const filteredCountries = allCountries.filter((country) =>
     country.name.common.toLowerCase().includes(query)
   );
 
   if (filteredCountries.length === 0) {
-    alert(`No countries found in "${userInput.value}". Please try again.`);
+    Swal.fire({
+      icon: "info",
+      title: "No Results Found",
+      text: `Cannot find any country matching "${userInput.value}". Please try another search.`,
+    });
+    userInput.value = "";
     countryDetails.innerHTML = "";
+    return;
   }
 
   displayCountries(filteredCountries);
+  // userInput.value = ""; 
 }
